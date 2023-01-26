@@ -1,5 +1,6 @@
 package clone.chostagram.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ public class Likes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "likes_id")
     private Long id;
 
     @ManyToOne(fetch = LAZY)
@@ -31,6 +33,7 @@ public class Likes {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"posts"})
     private User user;
 
     @Builder

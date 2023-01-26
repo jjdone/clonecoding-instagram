@@ -1,10 +1,12 @@
 package clone.chostagram.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -13,6 +15,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
     @Column(length = 30, nullable = false)
@@ -31,6 +34,10 @@ public class User {
 
     @Column(name = "profile_image_url")
     private String profileImgUrl;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
+    private List<Post> posts;
 
     @Builder
     public User(String name, String password, String email, String phone, String title, String website, String profileImgUrl) {
