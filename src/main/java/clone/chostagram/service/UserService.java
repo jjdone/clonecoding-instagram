@@ -18,7 +18,7 @@ public class UserService {
     @Transactional
     public User join(UserSignupDto userDto) {
 
-        if(userRepository.findByEmail(userDto.getEmail()) != null) {
+        if(userRepository.findUserByEmail(userDto.getEmail()) != null) {
             throw new CustomValidationException("이미 존재하는 메일입니다.");
         }
 
