@@ -9,10 +9,10 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Value("${profileImg.path}")
+    @Value("${custom.profileImg.path}")
     private String profileUploadFolder;
 
-    @Value("$post.path")
+    @Value("${custom.post.path}")
     private String postUploadFolder;
 
     @Override

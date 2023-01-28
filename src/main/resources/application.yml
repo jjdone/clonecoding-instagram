@@ -17,3 +17,10 @@ logging:
   level:
     org.hibernate.SQL: debug
 #    org.hibernate.type: trace
+
+custom:
+  profileImg:
+    path: '/Users/jodoil/Study/profile_imgs/'
+  post:
+    path: '/Users/jodoil/Study/uploads/'
+
