@@ -1,4 +1,4 @@
-package clone.chostagram.web.dto;
+package clone.chostagram.web.dto.user;
 
 import lombok.Builder;
 import lombok.Data;
