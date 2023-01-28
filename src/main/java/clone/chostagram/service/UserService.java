@@ -1,6 +1,7 @@
 package clone.chostagram.service;
 
 import clone.chostagram.domain.User;
+import clone.chostagram.handler.exception.CustomValidationException;
 import clone.chostagram.repository.UserRepository;
 import clone.chostagram.web.dto.UserSignupDto;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,11 @@ public class UserService {
 
     @Transactional
     public User join(UserSignupDto userDto) {
+
+        if(userRepository.findByEmail(userDto.getEmail()) != null) {
+            throw new CustomValidationException("이미 존재하는 메일입니다.");
+        }
+
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         return userRepository.save(User.builder()
