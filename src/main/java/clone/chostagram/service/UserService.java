@@ -2,9 +2,11 @@ package clone.chostagram.service;
 
 import clone.chostagram.domain.User;
 import clone.chostagram.handler.exception.CustomValidationException;
+import clone.chostagram.repository.FollowRepository;
 import clone.chostagram.repository.UserRepository;
-import clone.chostagram.web.dto.UserSignupDto;
+import clone.chostagram.web.dto.user.UserSignupDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final FollowRepository followRepository;
+
+    @Value("${custom.profileImg.path}")
+    private String uploadFolder;
 
     @Transactional
     public User join(UserSignupDto userDto) {
@@ -34,4 +40,6 @@ public class UserService {
                 .profileImgUrl(null)
                 .build());
     }
+
+
 }
