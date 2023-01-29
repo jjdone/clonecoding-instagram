@@ -1,7 +1,7 @@
 package clone.chostagram.web.controller;
 
 import clone.chostagram.service.UserService;
-import clone.chostagram.web.dto.UserSignupDto;
+import clone.chostagram.web.dto.user.UserSignupDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
