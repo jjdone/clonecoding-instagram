@@ -49,4 +49,16 @@ public class User {
         this.website = website;
         this.profileImgUrl = profileImgUrl;
     }
+
+    public void update(String name, String password, String phone, String title, String website) {
+        this.name = name;
+        this.password = password;
+        this.phone = phone;
+        this.title = title;
+        this.website = website;
+    }
+
+    public void updateProfileImgUrl(String profileImgUrl) {
+        this.profileImgUrl = profileImgUrl;
+    }
 }

@@ -2,14 +2,12 @@ package clone.chostagram.service;
 
 import clone.chostagram.domain.User;
 import clone.chostagram.repository.UserRepository;
-import clone.chostagram.web.dto.UserSignupDto;
-import org.assertj.core.api.Assertions;
+import clone.chostagram.web.dto.user.UserSignupDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
