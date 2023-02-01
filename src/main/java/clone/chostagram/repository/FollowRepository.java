@@ -9,10 +9,10 @@ public interface FollowRepository extends JpaRepository<Follow, Long> {
 
     Follow findFollowByFromUserIdAndToUserId(Long from_user_id, Long to_user_id);
 
-    @Query(value = "select count(*) from follow where to_user_id = :profiled", nativeQuery = true)
+    @Query(value = "select count(f) from Follow f where f.toUser.id = :profiled")
     int findFollowerCountById(Long profileId);
 
-    @Query(value = "select count(*) from follow where from_user_id = :profileId", nativeQuery = true)
+    @Query(value = "select count(f) from Follow f where f.fromUser.id = :profileId")
     int findFollowingCountById(Long profileId);
 
     @Modifying
@@ -20,6 +20,6 @@ public interface FollowRepository extends JpaRepository<Follow, Long> {
     void follow(Long fromUserId, Long toUserId);
 
     @Modifying
-    @Query(value = "delete from follow where from_user_id = :fromUserId and to_user_id = :toUserId", nativeQuery = true)
+    @Query(value = "delete from Follow f where f.fromUser.id = :fromUserId and f.toUser.id = :toUserId")
     void unfollow(Long fromUserId, Long toUserId);
 }

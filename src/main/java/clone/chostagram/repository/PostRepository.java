@@ -8,18 +8,17 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @Query(value = "select * " +
-            "from post  " +
-            "where user_id in (" +
-                "select to_user_id from follow where from_user_id = :sessionId)" +
-            "order by id desc", nativeQuery = true)
+    @Query(value = "select p " +
+            "from Post p " +
+            "where p.user.id in (select f.toUser.id from Follow f where f.fromUser.id = :sessionId) " +
+            "order by p.id desc")
     Page<Post> mainStory(long sessionId, Pageable pageable);
 
-    @Query(value = "select * " +
-            "from post " +
-            "where tag like :tag or tag like concat('%, ', :tag, ' %') " +
-            "or tag like concat('%, ', :tag) " +
-            "or tag like concat(:tag, ' ,%') " +
-            "order by id desc", nativeQuery = true)
+    @Query(value = "select p " +
+            "from Post p " +
+            "where p.tag like :tag or p.tag like concat('%, ', :tag, ' %') " +
+            "or p.tag like concat('%, ', :tag) " +
+            "or p.tag like concat(:tag, ' ,%') " +
+            "order by p.id desc")
     Page<Post> searchResult(String tag, Pageable pageable);
 }
